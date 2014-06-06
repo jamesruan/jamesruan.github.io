@@ -10,13 +10,24 @@ function get_file(url){
 }
 
 $(document).ready( function (){
-    $("a.content-target").click(function(){
-        function load_content(file){
-            var text = get_file(file);
-            var parsed = grammar.parse(text);
-            $("#content").jsml(parsed);
-        }
+
+    var on_content_load = function(){
+        $("a.content-target").click(function(){
+            function load_content(file){
+                var text = get_file(file);
+                var parsed = grammar.parse(text);
+                $("#content").jsml(parsed);
+            }
+            var file = $(this).attr("title");
+            load_content(file);
+        });
+    };
+
+    var aside_default = $("a.aside-target.default").attr("title");
+    $("#aside").load(aside_default, on_content_load);
+
+    $("a.aside-target").click(function(){
         var file = $(this).attr("title");
-        load_content(file);
+        $("#aside").load(file, on_content_load);
     });
 });
