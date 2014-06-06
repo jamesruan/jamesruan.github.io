@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James Ruan's Pages</title>
+<link id="main_css" rel="stylesheet" type="text/css" href="ebony/stylesheets/main_ivory.css" media="all">
+<script src="ebony/javascripts/bundle.min.js"></script>
+<script src="javascripts/index.min.js"></script>
+<script>
+    function toggle_theme(){
+        var ebony = "ebony/stylesheets/main_ebony.css";
+        var ivory = "ebony/stylesheets/main_ivory.css";
+        var $ = require('jquery');
+        if($("#main_css").attr("href") === ebony){
+            $("#main_css").attr("href", ivory);
+        }else{
+            $("#main_css").attr("href", ebony);
+        }
+    }
+</script>
+</head>
+<body>
+    <div class="grid">
+        <header class="row">
+            <div class="row">
+                <div class="c11 first"></div>
+                <div class="c1 last">
+                    <a href="javascript: toggle_theme();">更换主题</a>
+                </div>
+            </div>
+            <div class="row">
+                <h2>James Ruan's Pages</h2>
+            </div>
+            <hr>
+        </header>
+
+        <main class="row">
+            <div class="c3">
+                <nav class="row">
+                    <ul>
+                        <li><a class="content-target" href="#" title="threads.ml.js">Threads</a> </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="c9">
+                <section id="content" class="row">
+                    <p>Test content</p>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
