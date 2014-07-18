@@ -207,23 +207,37 @@ var inc = function(a){
     };
 };
 
-//id: a -> (b -> (c::(resolve, reject) -> Promise(d)))
-//id is used to reset the value wrapped in Promise
-var id = function(id){
+//read: ( a -> d ) -> (b -> (c::(resolve, reject) -> Promise(a)))
+var read = function(f){
     return(function(a){
         return(function(resolve, reject){
-            return resolve(id);
+            f(a)
+            return resolve(a);
         });
     });
 }
 
-//print: a -> (b::(resolve, reject) -> Promise(c))
-var print = function(a){
-    return function(resolve, reject){
-        console.log("value wrapped in Promise is: " + a);
-        return resolve(a);
-    };
+//write: ( a -> d ) -> (b -> (c::(resolve, reject) -> Promise(d)))
+var write = function(f){
+    return(function(a){
+        return(function(resolve, reject){
+            return resolve(f(a));
+        });
+    });
 }
+
+//id is used to reset the value wrapped in Promise
+var id = function(id){
+    return(write(function(v){
+        return id;}));
+};
+
+
+//print: a -> (b::(resolve, reject) -> Promise(c))
+var print = read(function(a){
+        console.log("value wrapped in Promise is: " + a);
+    });
+
 
 var a = new Promise(function(resolve, reject){
     console.log("startup");
