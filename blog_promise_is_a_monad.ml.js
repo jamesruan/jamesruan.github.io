@@ -252,4 +252,14 @@ d = b.then(id(1)).then(inc).then(inc);
 //{ value: 3, rejected: false }
 e = d.then(inc).then(print);
 //value wrapped in Promise is: 4
+t = e;
+//{ value: 4, rejected: false }
+timer = setInterval(function(){
+    t = t.then(inc).then(print);
+}, 1000)
+//value wrapped in Promise is: 5
+//value wrapped in Promise is: 6
+//value wrapped in Promise is: 7
+//value wrapped in Promise is: 8
+//...
 \code+{end}
