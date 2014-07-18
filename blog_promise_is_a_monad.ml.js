@@ -158,38 +158,31 @@ Promise.prototype.then = function(success, error){
     if(this.rejected){
         try{
             if(error==null){
-                x = null;
+                return this.reject(this.value);
             }else{
                 assert.ok(error instanceof Function);
                 x = error(this.value);
                 //x: a::(resolve, reject) -> Promise(b);
+                return new Promise(x);
             }
         }catch(e)
         {
             return this.reject(e);
-        }
-        if(x==null){
-            return this.reject(this.value);
-        }else{
-            return new Promise(x);
         }
     }else{
         try{
             if(success==null){
                 x = null;
+                return this.resolve(this.value);
             }else{
                 assert.ok(success instanceof Function);
                 x = success(this.value);
                 //x: a::(resolve, reject) -> Promise(b);
+                return new Promise(x);
             }
         }catch(e)
         {
             return this.reject(e);
-        }
-        if(x==null){
-            return this.resolve(this.value);
-        }else{
-            return new Promise(x);
         }
     }
 };
