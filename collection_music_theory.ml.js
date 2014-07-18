@@ -1,12 +1,6 @@
-\h3{music}
+\h3{theory}
 
-Collection for music related resources.
-
-\hline
-
-\h4{theory}
-
-\h5{无调性理论介绍}
+\h4{无调性理论介绍}
 from \link+[nonhounnome@果壳]{http://www.guokr.com/i/1517102603/activities/}
 \list*{
     \* \link+[无调性理论简介（一）前言]{http://www.guokr.com/post/575063/}

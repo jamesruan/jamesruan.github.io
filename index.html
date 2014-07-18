@@ -6,19 +6,6 @@
 <title>James Ruan's Pages</title>
 <link id="main_css" rel="stylesheet" type="text/css" href="ebony/stylesheets/main_ivory.css" media="all">
 <script src="ebony/javascripts/bundle.min.js"></script>
-<script src="javascripts/index.min.js"></script>
-<script>
-    function toggle_theme(){
-        var ebony = "ebony/stylesheets/main_ebony.css";
-        var ivory = "ebony/stylesheets/main_ivory.css";
-        var $ = require('jquery');
-        if($("#main_css").attr("href") === ebony){
-            $("#main_css").attr("href", ivory);
-        }else{
-            $("#main_css").attr("href", ebony);
-        }
-    }
-</script>
 </head>
 <body>
     <div class="grid">
@@ -26,7 +13,7 @@
             <div class="row">
                 <div class="c11 first"></div>
                 <div class="c1 last">
-                    <a href="javascript: toggle_theme();">更换主题</a>
+                    <a href="#" data-bind="click:toggle_theme">更换主题</a>
                 </div>
             </div>
             <div class="row">
@@ -36,23 +23,37 @@
         </header>
 
         <main class="row">
-            <nav class="c2">
-                    <ul>
-                        <li><a class="aside-target default" href="#" title="home.aside.html">Home</a> </li>
-                        <li><a class="aside-target" href="#" title="projects.aside.html">Projects</a> </li>
-                        <li><a class="aside-target" href="#" title="collection.aside.html">Collection</a> </li>
-                    </ul>
+            <nav class="c3">
+                <ul data-bind="foreach: aside">
+                    <li>
+                        <a data-bind="text: title, attr:{ href: target, title: title}, click: $root.showToggle"></a>
+                        <div data-bind="if: show">
+                            <ul data-bind="foreach:child">
+                                <li>
+                                    <a data-bind="text: title, attr:{ href: target, title: title}, click: $root.showToggle"></a>
+                                    <div data-bind="if: show">
+                                        <ul data-bind="foreach:child">
+                                            <li>
+                                                <a data-bind="text: title, attr:{ href: target, title: title}, click: $root.showToggle"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </nav>
-            <div class="c10 note">
+            <div class="c9 note">
                 <div class="row">
-                    <aside id="aside" class="c2">
-                    </aside>
                     <section id="content" class="c10">
                     </section>
+                </div>
             </div>
         </main>
         <footer class="row">
         </footer>
     </div>
+<script src="javascripts/index.min.js"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@ Ebony is composed of:
     \* A CSS normalization forked from \link+[normalize.css]{http://necolas.github.io/normalize.css/};
     \* A newly developed \link+[Markup Language]{http://jamesruan.github.io/ebony/ml.html};
     \* A syntax highlighter from \link+[highlight.js]{http://highlightjs.org/}
+    \* A MVVC library from \link+[knockout]{http://knockoutjs.com/}
+    \* A evented js library from \link+[Sammy.js]{http://www.sammyjs.org/}
     \* An icon font type from \link+[glyphicons]{http://glyphicons.com/} provided as a part of \link+[bootstrap]{http://getbootstrap.com/}
     \* An emoji font type from \link+[emoji symbols]{http://emojisymbols.com/}
     \* Color themes of a white and black style.

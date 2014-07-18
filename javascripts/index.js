@@ -1,33 +1,48 @@
+var $ = require('jquery');
+var ko = require('knockout');
+var ML= require('ML');
+var aside=[
+{show:ko.observable(true), title:"Profile", target:"profile.ml.js", child: false},
+{show:ko.observable(false), title:"Projects", target:"project.ml.js", child: [
+    {show: ko.observable(true), title:"Ebony", target:"project_ebony.ml.js", child: false}
+]},
+{show: ko.observable(false), title:"Collection", target:"collection.ml.js", child: [
+    {show: ko.observable(false), title:"Music", target:"collection_music.ml.js", child: [
+        {show: ko.observable(true), title:"Theory", target:"collection_music_theory.ml.js", child: false}
+    ]}
+]},
+{show: ko.observable(false), title:"Blog", target:"blog.ml.js", child: [
+        {show: ko.observable(true), title:"Promise is a Monad", target:"blog_promise_is_a_monad.ml.js", child: false}
+    ]}
+];
 
-var $=require('jquery');
-var jsml=require('jsml-jquery');
-var grammar = require('grammar');
-
-function get_file(url){
-    var string = $.ajax({url: url, async: false, cache: false, dataType: "text"
-    }).responseText;
-    return string;
-}
-
-$(document).ready( function (){
-
-    var on_content_load = function(){
-        $("a.content-target").click(function(){
-            function load_content(file){
-                var text = get_file(file);
-                var parsed = grammar.parse(text);
-                $("#content").jsml(parsed);
+var viewModel = function(aside){
+    var self = this;
+    self.aside = aside;
+    self.theme = ko.observable("ebony/stylesheets/main_ivory.css");
+    self.showToggle = function(){
+        if(this.child){
+            if(this.show()){
+                this.show(false);
+            }else{
+                this.show(true);
             }
-            var file = $(this).attr("title");
-            load_content(file);
-        });
+        }
+        ML.render_file(this.target, $("#content"), false);
     };
+    self.toggle_theme = function (){
+            var ebony = "ebony/stylesheets/main_ebony.css";
+            var ivory = "ebony/stylesheets/main_ivory.css";
+            if(self.theme() === ebony){
+                self.theme(ivory);
+                $("#main_css").attr("href", ivory);
+            }else{
+                self.theme(ebony);
+                $("#main_css").attr("href", ebony);
+            }
+        }
+    ML.render_file(self.aside[0].target, $("#content"), false);
+};
 
-    var aside_default = $("a.aside-target.default").attr("title");
-    $("#aside").load(aside_default, on_content_load);
+ko.applyBindings(new viewModel(aside));
 
-    $("a.aside-target").click(function(){
-        var file = $(this).attr("title");
-        $("#aside").load(file, on_content_load);
-    });
-});
