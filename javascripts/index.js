@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var ko = require('knockout');
 var ML= require('ML');
+require('Sammy');
 var aside=[
 {show:ko.observable(true), title:"Profile", target:"profile.ml.js", child: false},
 {show:ko.observable(false), title:"Projects", target:"project.ml.js", child: [
@@ -20,7 +21,7 @@ var viewModel = function(aside){
     var self = this;
     self.aside = aside;
     self.theme = ko.observable("ebony/stylesheets/main_ivory.css");
-    self.showToggle = function(){
+    self.showToggle = function(line){
         if(this.child){
             if(this.show()){
                 this.show(false);
@@ -28,7 +29,7 @@ var viewModel = function(aside){
                 this.show(true);
             }
         }
-        ML.render_file(this.target, $("#content"), false);
+        location.hash = "#/"+line["target"] ;
     };
     self.toggle_theme = function (){
             var ebony = "ebony/stylesheets/main_ebony.css";
@@ -41,7 +42,16 @@ var viewModel = function(aside){
                 $("#main_css").attr("href", ebony);
             }
         }
-    ML.render_file(self.aside[0].target, $("#content"), false);
+
+    Sammy(function(){
+        this.get('#/:target', function(){
+            var file = this.params['target'];
+            ML.render_file(file, $("#content"), false);
+        });
+        //default page
+        this.get('', function() { this.app.runRoute('get', "#/profile.ml.js") });
+    }).run();
+
 };
 
 ko.applyBindings(new viewModel(aside));
