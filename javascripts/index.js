@@ -5,7 +5,8 @@ require('Sammy');
 var aside=[
 {show:ko.observable(true), title:"Profile", target:"profile.ml.js", child: false},
 {show:ko.observable(false), title:"Projects", target:"project.ml.js", child: [
-    {show: ko.observable(true), title:"Ebony", target:"project_ebony.ml.js", child: false}
+    {show: ko.observable(true), title:"Ebony", target:"project_ebony.ml.js", child: false},
+    {show: ko.observable(true), title:"Fgsocks", target:"project_fgsocks.ml.js", child: false}
 ]},
 {show: ko.observable(false), title:"Collection", target:"collection.ml.js", child: [
     {show: ko.observable(false), title:"Music", target:"collection_music.ml.js", child: [
