@@ -28,7 +28,7 @@ And Erlang community even has mature framework of multi-processing cooperation c
 Even more, OTP is capable of extending multi-process to multi-server and form an server cluster.
 
 And that cluster can operate 24 hours x 7 days, because you don't need to stop the server to fix some part of it.
-Because Erlang's philosophy "Let it crash", codes are almost write in a deterministic way, any unexpeceted error will cause the program to log and exit, and supervisor's will restart the stopped node.
+Because Erlang's philosophy \"Let it crash\", codes are almost write in a deterministic way, any unexpeceted error will cause the program to log and exit, and supervisor's will restart the stopped node.
 When you know about the unexpeceted exit, you can debug it online, fix it, without disturing cooperating part of it.  Almost every piece of code (if designed properly) could replaced while the code is hot running!
 
 So some just conclude that Erlang is a secret weapon that Ericsson want's to hide from the world, given that the community is not that active and attracting to new developers.
