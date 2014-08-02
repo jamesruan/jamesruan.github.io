@@ -14,7 +14,8 @@ var aside=[
     ]}
 ]},
 {show: ko.observable(false), title:"Blog", target:"blog.ml.js", child: [
-        {show: ko.observable(true), title:"Promise is a Monad", target:"blog_promise_is_a_monad.ml.js", child: false}
+        {show: ko.observable(true), title:"Promise is a Monad", target:"blog_promise_is_a_monad.ml.js", child: false},
+        {show: ko.observable(true), title:"Is Erlang a Secret Weapon?", target:"blog_is_erlang_a_secret_weapon.ml.js", child: false}
     ]}
 ];
 
