@@ -10,4 +10,5 @@ from \link+[nonhounnome@果壳]{http://www.guokr.com/i/1517102603/activities/}
     \* \link+[无调性理论简介（五）音集理论的实际应用]{http://www.guokr.com/post/583663/}
     \* \link+[无调性理论简介（六）音集的特性和音阶]{http://www.guokr.com/post/587919/}
     \* \link+[无调性理论简介（七）十二音体系]{http://www.guokr.com/post/596904/}
+    \* \link+[无调性理论简介（七）十二音体系应用]{http://www.guokr.com/post/653567/}
 }
